@@ -36,4 +36,8 @@ constructor(private route: ActivatedRoute, private router:Router){}
     this.router.navigateByUrl("/bank/new");
   }
 
+  editData(){
+    this.router.navigateByUrl("/bank/:id");
+  }
+
 }
