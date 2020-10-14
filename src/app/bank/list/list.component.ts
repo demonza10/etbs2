@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ListDataSource, ListItem } from './list-datasource';
 
 @Component({
@@ -11,7 +11,7 @@ import { ListDataSource, ListItem } from './list-datasource';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements AfterViewInit, OnInit {
-constructor(private route: ActivatedRoute,){}
+constructor(private route: ActivatedRoute, private router:Router){}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -19,7 +19,7 @@ constructor(private route: ActivatedRoute,){}
   dataSource: ListDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['id', 'name','menu'];
 
   ngOnInit() {
     this.dataSource = new ListDataSource(this.route.snapshot.data.item.data);
@@ -31,4 +31,9 @@ constructor(private route: ActivatedRoute,){}
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
   }
+
+  addData() {
+    this.router.navigateByUrl("/bank/new");
+  }
+
 }

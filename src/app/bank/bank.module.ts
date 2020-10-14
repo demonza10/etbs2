@@ -6,17 +6,33 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { RouterModule, Routes } from '@angular/router';
 import { BankService } from './bank.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { FormComponent } from './form/form.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTabsModule } from '@angular/material/tabs';
+
+
 
 const routes: Routes = [
   {
     path: 'bank',
     component: ListComponent,
-    resolve:{item:BankService}
+    resolve: { item: BankService }
+  },
+  {
+    path:'bank/:id',
+    component:ListComponent
   }
 ];
 
 @NgModule({
-  declarations: [ListComponent],
+  declarations: [ListComponent, FormComponent],
   imports: [
     CommonModule,
     MatTableModule,
@@ -24,6 +40,15 @@ const routes: Routes = [
     MatSortModule,
 
     RouterModule.forChild(routes),
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    MatMenuModule,
+    MatTabsModule
   ]
 })
 export class BankModule { }
