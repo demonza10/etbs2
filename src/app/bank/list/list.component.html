@@ -22,11 +22,11 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="editData()">
+          <button mat-menu-item (click)="editData(row)">
             <mat-icon>edit</mat-icon>
             <span>Edit</span>
           </button>
-          <button mat-menu-item>
+          <button mat-menu-item (click)="deleteData(row)">
             <mat-icon>delete</mat-icon>
             <span>delete</span>
           </button>

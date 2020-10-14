@@ -28,4 +28,15 @@ export class BankService implements Resolve<any>{
   getBankDataList() {
     return this.http.get(api_url, { headers: this.authorizationHeader() })
   }
+
+  deleteBankData(body): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http
+        .delete(api_url + body._id, { headers: this.authorizationHeader() })
+        .subscribe((res: any) => {
+          resolve(res.data);
+        }, reject);
+    });
+  }
+
 }

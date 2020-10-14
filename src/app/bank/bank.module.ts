@@ -21,13 +21,13 @@ import { MatTabsModule } from '@angular/material/tabs';
 
 const routes: Routes = [
   {
-    path: 'bank',
-    component: ListComponent,
-    resolve: { item: BankService }
+    path: 'form/:id',
+    component:FormComponent,
   },
   {
-    path:'bank/:id',
-    component:ListComponent
+    path: '**',
+    component: ListComponent,
+    resolve: { item: BankService }
   }
 ];
 

@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BankService } from '../bank.service';
 import { ListDataSource, ListItem } from './list-datasource';
 
 @Component({
@@ -11,7 +12,7 @@ import { ListDataSource, ListItem } from './list-datasource';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements AfterViewInit, OnInit {
-constructor(private route: ActivatedRoute, private router:Router){}
+constructor(private route: ActivatedRoute, private router:Router, private bankService: BankService){}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -33,11 +34,19 @@ constructor(private route: ActivatedRoute, private router:Router){}
   }
 
   addData() {
-    this.router.navigateByUrl("/bank/new");
+    this.router.navigateByUrl("/bank/form/new");
   }
 
-  editData(){
-    this.router.navigateByUrl("/bank/:id");
+  editData(item){
+    this.router.navigateByUrl("/bank/form/"+item._id);
+  }
+
+  deleteData(item) {
+    this.bankService.deleteBankData(item).then((res) => {
+      this.bankService.getBankDataList().subscribe((res: any) => {
+        this.table.dataSource = res.data;
+      })
+    })
   }
 
 }
